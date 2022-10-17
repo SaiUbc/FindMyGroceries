@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingList {
-    private String name;
-    private List<Store> stores;
-    private List<String> shoppingList;
+    private final String name;
+    private final List<Store> stores;
+    private final List<String> shoppingList;
 
     //EFFECTS: constructs a shopping list with a list of stores and shopping list
     public ShoppingList(String name) {
@@ -15,51 +15,39 @@ public class ShoppingList {
         this.shoppingList = new ArrayList<>();
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: adds a store to the list of stores in the shopping list
     public void addStore(Store store) {
         stores.add(store);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: removes a store from the list of stores in the shopping list
     public void removeStore(Store store) {
         stores.remove(store);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: adds item to the shopping list
     public void addItemToList(String item) {
         shoppingList.add(item);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //MODIFIES: this
+    //EFFECTS: removes item from the shopping list
     public void removeItemFromList(String item) {
         shoppingList.remove(item);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    // getters
     public String getShoppingListName() {
         return this.name;
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
     public List<Store> getStores() {
         return stores;
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
     public List<String> getShoppingList() {
         return shoppingList;
     }

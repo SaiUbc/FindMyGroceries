@@ -9,6 +9,7 @@ public class Item {
         this.price = price;
     }
 
+    // getters
     public int getItemPrice() {
         return price;
     }
@@ -17,6 +18,7 @@ public class Item {
         return name;
     }
 
+    // setters
     public void setItemPrice(int price) {
         this.price = price;
     }

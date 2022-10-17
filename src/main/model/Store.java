@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store {
-    private String name;
-    private int distance;
-    private int rating;
-    private List<Item> items;
+    private final String name;
+    private final int distance;
+    private final int rating;
+    private final List<Item> items;
 
-
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //REQUIRES: distance > 0, rating >= 0 && rating <= 5
+    //EFFECTS: Constructs a store with a given name, distance and rating with zero items in it
     public Store(String name, int distance, int rating) {
         this.name = name;
         this.distance = distance;
@@ -20,47 +18,37 @@ public class Store {
         this.items = new ArrayList<>();
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+
+    //MODIFIES: this
+    //EFFECTS: adds item to the stores items
     public void storeItem(Item item) {
         this.items.add(item);
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //REQUIRES: stores items shouldn't be empty
+    //MODIFIES: this
+    //EFFECTS: removes a given item from the store if found, otherwise doesn't remove anything.
     public void removeItem(String itemname) {
-        for (int i = 0; i < items.size(); i++) {
-            if (items.get(i).getItemName().equals(itemname)) {
-                items.remove(items.get(i));
+        while (items.size() != 0) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getItemName().equals(itemname)) {
+                    items.remove(items.get(i));
+                }
             }
         }
     }
 
-    //REQUIRES:
-    //MODIFIES:
-    //EFFECTS:
+    //REQUIRES: stores items shouldn't be empty
+    //EFFECTS: returns true if a given item is found in the store, false otherwise
     public boolean containsItemName(String itemname) {
-        for (Item item : items) {
-            if (item.getItemName().equals(itemname)) {
-                return true;
+        while (items.size() != 0) {
+            for (Item item : items) {
+                if (item.getItemName().equals(itemname)) {
+                    return true;
+                }
             }
         }
         return false;
-    }
-
-    //Setters
-    public void setStoreName(String name) {
-        this.name = name;
-    }
-
-    public void setStoreDistance(int distance) {
-        this.distance = distance;
-    }
-
-    public void setStoreRating(int rating) {
-        this.rating = rating;
     }
 
     //Getters
