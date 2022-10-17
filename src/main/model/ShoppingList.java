@@ -18,7 +18,9 @@ public class ShoppingList {
     //MODIFIES: this
     //EFFECTS: adds a store to the list of stores in the shopping list
     public void addStore(Store store) {
-        stores.add(store);
+        if (!stores.contains(store)) {
+            stores.add(store);
+        }
     }
 
     //MODIFIES: this
@@ -30,7 +32,9 @@ public class ShoppingList {
     //MODIFIES: this
     //EFFECTS: adds item to the shopping list
     public void addItemToList(String item) {
-        shoppingList.add(item);
+        if (!shoppingList.contains(item)) {
+            shoppingList.add(item);
+        }
     }
 
     //MODIFIES: this

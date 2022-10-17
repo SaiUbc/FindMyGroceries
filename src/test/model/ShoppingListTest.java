@@ -14,27 +14,17 @@ public class ShoppingListTest {
     String apple;
     String orange;
 
-    Item apple1;
-    Item apple2;
-    Item orange1;
-    Item orange2;
-
     @BeforeEach
     void setup() {
         safeway = new Store("SafeWay", 20, 5);
         saveon = new Store("Save-Ons", 10, 2);
         apple = "Apple";
         orange = "Orange";
-        apple1 = new Item("Apple", 34);
-        apple2 = new Item("Apple", 44);
-        orange1 = new Item("Orange", 20);
-        orange2 = new Item("Orange", 24);
         myList = new ShoppingList("Shopping List Test 1");
     }
 
     @Test
     void constructorTest() {
-        //TODO
         assertEquals("Shopping List Test 1", myList.getShoppingListName());
         assertEquals(0, myList.getShoppingList().size());
         assertEquals(0, myList.getStores().size());
@@ -87,31 +77,56 @@ public class ShoppingListTest {
 
     @Test
     void addSingleItemToListTest() {
-        //TODO
+        assertEquals(0, myList.getShoppingList().size());
+        myList.addItemToList(apple);
+        assertEquals(1, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
     }
 
     @Test
     void addMultipleItemsToListTest() {
-        //TODO
+        assertEquals(0, myList.getShoppingList().size());
+        myList.addItemToList(apple);
+        myList.addItemToList(orange);
+        assertEquals(2, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
+        assertTrue(myList.getShoppingList().contains(orange));
     }
 
     @Test
     void addDuplicatedItemsToListTest() {
-        //TODO
+        assertEquals(0, myList.getShoppingList().size());
+        myList.addItemToList(apple);
+        assertEquals(1, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
+        myList.addItemToList(apple);
+        assertEquals(1, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
     }
 
     @Test
     void removeItemFromListTest() {
-        //TODO
+        myList.addItemToList(apple);
+        assertEquals(1, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
+        myList.removeItemFromList(apple);
+        assertEquals(0, myList.getShoppingList().size());
+        assertFalse(myList.getShoppingList().contains(apple));
     }
 
     @Test
     void removeMultipleItemsFromListTest() {
-        //TODO
-    }
-
-    @Test
-    void removeItemFromEmptyListTest() {
-        //TODO
+        myList.addItemToList(apple);
+        myList.addItemToList(orange);
+        assertEquals(2, myList.getShoppingList().size());
+        assertTrue(myList.getShoppingList().contains(apple));
+        assertTrue(myList.getShoppingList().contains(orange));
+        myList.removeItemFromList(apple);
+        assertEquals(1, myList.getShoppingList().size());
+        assertFalse(myList.getShoppingList().contains(apple));
+        assertTrue(myList.getShoppingList().contains(orange));
+        myList.removeItemFromList(orange);
+        assertEquals(0, myList.getShoppingList().size());
+        assertFalse(myList.getShoppingList().contains(orange));
     }
 }
