@@ -1,8 +1,8 @@
 package ui;
 
+import model.Item;
 import model.ShoppingList;
 import model.Store;
-import model.Item;
 
 import java.util.ArrayList;
 import java.util.Scanner;
