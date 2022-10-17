@@ -71,7 +71,18 @@ public class ShoppingListTest {
 
     @Test
     void removeMultipleStoreTest() {
-        //TODO
+        assertEquals(0, myList.getStores().size());
+        myList.addStore(safeway);
+        myList.addStore(saveon);
+        assertEquals(2, myList.getStores().size());
+        assertTrue(myList.getStores().contains(safeway));
+        assertTrue(myList.getStores().contains(saveon));
+        myList.removeStore(safeway);
+        assertFalse(myList.getStores().contains(safeway));
+        assertEquals(1, myList.getStores().size());
+        myList.removeStore(saveon);
+        assertFalse(myList.getStores().contains(saveon));
+        assertEquals(0, myList.getStores().size());
     }
 
     @Test
