@@ -38,6 +38,16 @@ public class ShoppingListTest {
     }
 
     @Test
+    void addingExistingStoreTest() {
+        assertEquals(0, myList.getStores().size());
+        myList.addStore(safeway);
+        assertTrue(myList.getStores().contains(safeway));
+        assertEquals(1, myList.getStores().size());
+        myList.addStore(safeway);
+        assertEquals(1, myList.getStores().size());
+    }
+    
+    @Test
     void addMultipleStoreTest() {
         assertEquals(0, myList.getStores().size());
         myList.addStore(safeway);

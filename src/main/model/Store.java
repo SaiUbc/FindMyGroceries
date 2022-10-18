@@ -29,11 +29,9 @@ public class Store {
     //MODIFIES: this
     //EFFECTS: removes a given item from the store if found, otherwise doesn't remove anything.
     public void removeItem(String itemname) {
-        if (items.size() > 0) {
-            for (int i = 0; i < items.size(); i++) {
-                if (items.get(i).getItemName().equals(itemname)) {
-                    items.remove(items.get(i));
-                }
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getItemName().equals(itemname)) {
+                items.remove(items.get(i));
             }
         }
     }
