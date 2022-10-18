@@ -29,7 +29,7 @@ public class Store {
     //MODIFIES: this
     //EFFECTS: removes a given item from the store if found, otherwise doesn't remove anything.
     public void removeItem(String itemname) {
-        while (items.size() != 0) {
+        if (items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getItemName().equals(itemname)) {
                     items.remove(items.get(i));
@@ -41,7 +41,7 @@ public class Store {
     //REQUIRES: stores items shouldn't be empty
     //EFFECTS: returns true if a given item is found in the store, false otherwise
     public boolean containsItemName(String itemname) {
-        while (items.size() != 0) {
+        if (items.size() != 0) {
             for (Item item : items) {
                 if (item.getItemName().equals(itemname)) {
                     return true;

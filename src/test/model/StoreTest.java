@@ -56,11 +56,11 @@ public class StoreTest {
         assertEquals(1, safeway.getStoreItems().size());
         assertTrue(safeway.containsItemName("Apple"));
         safeway.removeItem("Apple");
-        assertTrue(safeway.containsItemName("Apple"));
+        assertFalse(safeway.containsItemName("Apple"));
     }
 
     @Test
-    // remove multiple items from the store
+        // remove multiple items from the store
     void removeMultipleItems() {
         assertFalse(safeway.containsItemName("Apple"));
         assertFalse(safeway.containsItemName("Orange"));
@@ -71,11 +71,11 @@ public class StoreTest {
         assertTrue(safeway.containsItemName("Orange"));
         assertTrue(safeway.containsItemName("Apple"));
         safeway.removeItem("Apple");
-        assertTrue(safeway.containsItemName("Apple"));
+        assertFalse(safeway.containsItemName("Apple"));
         assertTrue(safeway.containsItemName("Orange"));
         safeway.removeItem("Orange");
-        assertTrue(safeway.containsItemName("Apple"));
-        assertTrue(safeway.containsItemName("Orange"));
+        assertFalse(safeway.containsItemName("Apple"));
+        assertFalse(safeway.containsItemName("Orange"));
     }
 
     @Test
