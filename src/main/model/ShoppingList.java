@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShoppingList {
+public class ShoppingList implements Writable {
     private final String name;
     private final List<Store> stores;
     private final List<String> shoppingList;
@@ -43,6 +47,37 @@ public class ShoppingList {
         shoppingList.remove(item);
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("stores", storesToJSON());
+        json.put("shopping list", shoppingListToJSON());
+        return json;
+    }
+
+    private JSONArray storesToJSON() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Store store: stores) {
+            jsonArray.put(store.toJson());
+        }
+        return jsonArray;
+    }
+
+    private JSONArray shoppingListToJSON() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (String item: shoppingList) {
+            JSONObject json = new JSONObject();
+            json.put("item", item);
+            jsonArray.put(json);
+        }
+        return jsonArray;
+    }
+
+
+
     // getters
     public String getShoppingListName() {
         return this.name;
@@ -55,4 +90,5 @@ public class ShoppingList {
     public List<String> getShoppingList() {
         return shoppingList;
     }
+
 }

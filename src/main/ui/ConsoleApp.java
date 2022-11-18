@@ -3,7 +3,11 @@ package ui;
 import model.Item;
 import model.ShoppingList;
 import model.Store;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,19 +15,24 @@ public class ConsoleApp { //runs the app
     ShoppingList shoppingList;
     private Scanner input;
     ArrayList<String> storenames = new ArrayList<>();
+    private static final String JSON_STORE = "./data/shoppingList.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the console application
-    public ConsoleApp() {
+    public ConsoleApp() throws FileNotFoundException {
         runConsoleApp();
     }
 
     // MODIFIES: this
-    // EFFECTS: inputs users name and creates new shopping list
+    // EFFECTS: inputs users name and creates new shopping list 
     private void runConsoleApp() {
         System.out.print("Enter Name: \n");
         Scanner entry = new Scanner(System.in);
         String name = entry.next();
         shoppingList = new ShoppingList(name);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runConsole();
     }
 
@@ -34,7 +43,7 @@ public class ConsoleApp { //runs the app
             displayMainMenu();
             input = new Scanner(System.in);
             int command = input.nextInt();
-            if (command == 3) {
+            if (command == 5) {
                 break;
             } else {
                 processCommand(command);
@@ -51,6 +60,12 @@ public class ConsoleApp { //runs the app
         }
         if (command == 2) {
             runStoreMenu();
+        }
+        if (command == 3) {
+            saveShoppingList();
+        }
+        if (command == 4) {
+            loadShoppingList();
         }
     }
 
@@ -296,6 +311,29 @@ public class ConsoleApp { //runs the app
         return null;
     }
 
+    // EFFECTS: saves the shopping list to file
+    private void saveShoppingList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(shoppingList);
+            jsonWriter.close();
+            System.out.println("Saved " + shoppingList.getShoppingListName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads shopping list from file
+    private void loadShoppingList() {
+        try {
+            shoppingList = jsonReader.read();
+            System.out.println("Loaded " + shoppingList.getShoppingListName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
     // EFFECTS: displays Store menu
     private void displayStoreMenu() {
         System.out.println("***** Welcome to Store Menu *****");
@@ -319,6 +357,8 @@ public class ConsoleApp { //runs the app
         System.out.println("***** Welcome to FindMyGroceries *****");
         System.out.println("1 -> Shopping List");
         System.out.println("2 -> Stores");
-        System.out.println("3 -> Quit");
+        System.out.println("3 -> Save Shopping List");
+        System.out.println("4 -> Load Shopping List");
+        System.out.println("5 -> Quit");
     }
 }

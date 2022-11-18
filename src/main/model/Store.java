@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Store {
+public class Store implements Writable {
     private final String name;
     private final int distance;
     private final int rating;
@@ -64,5 +68,23 @@ public class Store {
 
     public List<Item> getStoreItems() {
         return items;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("distance", distance);
+        json.put("rating", rating);
+        json.put("items", itemsToJSON());
+        return json;
+    }
+
+    private JSONArray itemsToJSON() {
+        JSONArray jsonArray = new JSONArray();
+        for (Item item: items) {
+            jsonArray.put(item.toJson());
+        }
+        return jsonArray;
     }
 }

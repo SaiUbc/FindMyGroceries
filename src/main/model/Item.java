@@ -1,6 +1,9 @@
 package model;
 
-public class Item {
+import org.json.JSONObject;
+import persistence.Writable;
+
+public class Item implements Writable {
     private int price;
     private String name;
 
@@ -25,5 +28,13 @@ public class Item {
 
     public void setItemName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("price", price);
+        return json;
     }
 }

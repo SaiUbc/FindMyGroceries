@@ -20,7 +20,6 @@ public class StoreTest {
 
     @Test
     // Test the constructor
-
     void testStoreConstructor() {
         assertEquals("SafeWay", safeway.getStoreName());
         assertEquals(20, safeway.getStoreDistance());
