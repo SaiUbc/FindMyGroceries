@@ -1,13 +1,18 @@
 package ui;
 
-import java.io.FileNotFoundException;
+import java.awt.EventQueue;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            new ConsoleApp();
-        } catch (FileNotFoundException e) {
-            System.out.println("Unable to run application: file not found");
-        }
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    MainFrame window = new MainFrame();
+                    window.frmFindmygroceriesexe.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
