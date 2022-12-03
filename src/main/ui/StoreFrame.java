@@ -17,7 +17,7 @@ public class StoreFrame extends JFrame {
     JList<String> list;
     JScrollPane scrollPane;
 
-    //EFFECTS: initialzies the constructor
+    //EFFECTS: initializes the constructor
     public StoreFrame(ShoppingList shoppingList) {
         initialize();
         showStoreList(shoppingList);

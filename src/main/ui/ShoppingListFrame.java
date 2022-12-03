@@ -23,7 +23,7 @@ public class ShoppingListFrame extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: initialzes JFrame and all the ui elements
+    //EFFECTS: initializes JFrame and all the ui elements
     private void initialize() {
         shoppingListFrame = new JFrame();
         shoppingListFrame.getContentPane().setBackground(SystemColor.menu);
@@ -118,7 +118,7 @@ public class ShoppingListFrame extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: adds the delete item JButton to JFrame
+    //EFFECTS: adds a delete item JButton to JFrame
     private void deleteItemButton() {
         JButton btnDeleteItem = new JButton("Delete Item");
         btnDeleteItem.addActionListener(new ActionListener() {

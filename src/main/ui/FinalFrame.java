@@ -49,7 +49,7 @@ public class FinalFrame extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: initiatizes a scroll plane
+    //EFFECTS: initializes a scroll plane
     private void scrollPane() {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(73, 160, 494, 319);
@@ -57,7 +57,7 @@ public class FinalFrame extends JFrame {
     }
 
     //MODIFIES: this
-    //EFFECTS: initiatizes a JList plane
+    //EFFECTS: initializes a JList plane
     private void initializeJList() {
         list = new JList<>();
         model = new DefaultListModel<>();
