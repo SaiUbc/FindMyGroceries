@@ -16,8 +16,8 @@ public class ShoppingListTest {
 
     @BeforeEach
     void setup() {
-        safeway = new Store("SafeWay", 20, 5);
-        saveon = new Store("Save-Ons", 10, 2);
+        safeway = new Store("SafeWay");
+        saveon = new Store("Save-Ons");
         apple = "Apple";
         orange = "Orange";
         myList = new ShoppingList("Shopping List Test 1");

@@ -4,16 +4,16 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 public class Item implements Writable {
-    private int price;
+    private float price;
     private String name;
 
-    public Item(String name, int price) {
+    public Item(String name, float price) {
         this.name = name;
         this.price = price;
     }
 
     // getters
-    public int getItemPrice() {
+    public float getItemPrice() {
         return price;
     }
 
@@ -22,7 +22,7 @@ public class Item implements Writable {
     }
 
     // setters
-    public void setItemPrice(int price) {
+    public void setItemPrice(float price) {
         this.price = price;
     }
 

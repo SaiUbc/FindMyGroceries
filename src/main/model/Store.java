@@ -9,16 +9,12 @@ import java.util.List;
 
 public class Store implements Writable {
     private final String name;
-    private final int distance;
-    private final int rating;
     private final List<Item> items;
 
     //REQUIRES: distance > 0, rating >= 0 && rating <= 5
     //EFFECTS: Constructs a store with a given name, distance and rating with zero items in it
-    public Store(String name, int distance, int rating) {
+    public Store(String name) {
         this.name = name;
-        this.distance = distance;
-        this.rating = rating;
         this.items = new ArrayList<>();
     }
 
@@ -58,14 +54,6 @@ public class Store implements Writable {
         return this.name;
     }
 
-    public int getStoreDistance() {
-        return this.distance;
-    }
-
-    public int getStoreRating() {
-        return this.rating;
-    }
-
     public List<Item> getStoreItems() {
         return items;
     }
@@ -74,13 +62,11 @@ public class Store implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("distance", distance);
-        json.put("rating", rating);
-        json.put("items", itemsToJSON());
+        json.put("items", itemsToJson());
         return json;
     }
 
-    private JSONArray itemsToJSON() {
+    private JSONArray itemsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Item item: items) {
             jsonArray.put(item.toJson());

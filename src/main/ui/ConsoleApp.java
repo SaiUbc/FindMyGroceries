@@ -221,7 +221,7 @@ public class ConsoleApp { //runs the app
                 input = new Scanner(System.in);
                 int rating = input.nextInt();
 
-                Store store = new Store(name, distance, rating);
+                Store store = new Store(name);
                 shoppingList.addStore(store);
                 System.out.println("Store: " + name + " has been added!");
             }

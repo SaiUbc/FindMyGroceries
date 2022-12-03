@@ -13,7 +13,7 @@ public class StoreTest {
 
     @BeforeEach
     void setup() {
-        safeway = new Store("SafeWay", 20, 5);
+        safeway = new Store("SafeWay");
         apple = new Item("Apple", 30);
         orange = new Item("Orange", 40);
     }
@@ -22,8 +22,7 @@ public class StoreTest {
     // Test the constructor
     void testStoreConstructor() {
         assertEquals("SafeWay", safeway.getStoreName());
-        assertEquals(20, safeway.getStoreDistance());
-        assertEquals(5, safeway.getStoreRating());
+        assertEquals(0, safeway.getStoreItems().size());
     }
 
     @Test

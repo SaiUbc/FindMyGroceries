@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingList implements Writable {
-    private final String name;
-    private final List<Store> stores;
-    private final List<String> shoppingList;
+    private String name;
+    private List<Store> stores;
+    private List<String> shoppingList;
+    ArrayList<String> storenames;
 
     //EFFECTS: constructs a shopping list with a list of stores and shopping list
     public ShoppingList(String name) {
         this.name = name;
         this.stores = new ArrayList<>();
         this.shoppingList = new ArrayList<>();
+        this.storenames = new ArrayList<>();
     }
 
     //MODIFIES: this
@@ -51,12 +53,12 @@ public class ShoppingList implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("stores", storesToJSON());
-        json.put("shopping list", shoppingListToJSON());
+        json.put("stores", storesToJson());
+        json.put("shopping list", shoppingListToJson());
         return json;
     }
 
-    private JSONArray storesToJSON() {
+    private JSONArray storesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Store store: stores) {
@@ -65,7 +67,7 @@ public class ShoppingList implements Writable {
         return jsonArray;
     }
 
-    private JSONArray shoppingListToJSON() {
+    private JSONArray shoppingListToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (String item: shoppingList) {
@@ -76,7 +78,16 @@ public class ShoppingList implements Writable {
         return jsonArray;
     }
 
-
+    public Store findStore(String storeName) {
+        //Finds a Store of a given name in the list
+        for (Store store : stores) {
+            storenames.add(store.getStoreName());
+            if (storenames.contains(storeName)) {
+                return store;
+            }
+        }
+        return null;
+    }
 
     // getters
     public String getShoppingListName() {
@@ -89,6 +100,20 @@ public class ShoppingList implements Writable {
 
     public List<String> getShoppingList() {
         return shoppingList;
+    }
+
+    //setters
+
+    public void setStores(List<Store> stores) {
+        this.stores = stores;
+    }
+
+    public void setShoppingList(List<String> shoppingList) {
+        this.shoppingList = shoppingList;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

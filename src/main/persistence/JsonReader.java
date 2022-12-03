@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads shopping list from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads shopping list from file and returns it;
     // throws IOException if an error occurs reading data from file
     public ShoppingList read() throws IOException {
         String jsonData = readFile(source);
@@ -36,11 +36,10 @@ public class JsonReader {
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
-
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses shopping list from JSON object and returns it
     private ShoppingList parseShoppingList(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         ShoppingList shoppingList = new ShoppingList(name);
@@ -50,26 +49,19 @@ public class JsonReader {
     }
 
     // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // EFFECTS: parses list from JSON object and adds them to shopping list
     private void addList(ShoppingList shoppingList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("shopping list");
         for (Object json : jsonArray) {
-            JSONObject nextItem = (JSONObject) json;
-            addStore(shoppingList, nextItem);
+            String item = ((JSONObject) json).getString("item");
+            shoppingList.addItemToList(item);
         }
     }
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    private void nextItem(ShoppingList shoppingList, JSONObject jsonObject) {
-        String item = jsonObject.getString("item");
-        shoppingList.addItemToList(item);
-    }
-
 
 
     // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to workroom
+    // EFFECTS: parses thingies from JSON object and adds them to shopping list
     private void addStores(ShoppingList shoppingList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("stores");
         for (Object json : jsonArray) {
@@ -79,13 +71,17 @@ public class JsonReader {
     }
 
     // MODIFIES: wr
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    // EFFECTS: parses stores from JSON object and adds it to shopping list
     private void addStore(ShoppingList shoppingList, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        int distance = jsonObject.getInt("distance");
-        int rating = jsonObject.getInt("rating");
-
-        Store store = new Store(name,distance,rating);
+        Store store = new Store(name);
         shoppingList.addStore(store);
+        JSONArray jsonArray = jsonObject.getJSONArray("items");
+        for (Object json: jsonArray) {
+            String itemName = ((JSONObject) json).getString("name");
+            Float itemPrice = ((JSONObject) json).getFloat("price");
+            Item item = new Item(itemName, itemPrice);
+            store.storeItem(item);
+        }
     }
 }
