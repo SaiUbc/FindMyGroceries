@@ -35,7 +35,7 @@ This project particularly appealed to me because I have seen my friends at unive
 - You can process the tenth required event relating to processing the shopping list by pressing the shopping list menu and then pressing process list button 
 
 
-## Logging an event: example
+## Phase 4: Task 2
 
 When a Store is added to the Shopping List, an event is added to the event log that describes the addition of the
 Store with its name, date and time added. <br> For example: when a Store named "SafeWay" is added to the

@@ -1,0 +1,23 @@
+{
+    "shopping list": [
+        {"item": "Milk"},
+        {"item": "Rice"}
+    ],
+    "stores": [
+        {
+            "name": "Saveons",
+            "items": [{
+                "price": 4,
+                "name": "Milk"
+            }]
+        },
+        {
+            "name": "No Frills",
+            "items": [{
+                "price": 4,
+                "name": "Milk"
+            }]
+        }
+    ],
+    "name": "user"
+}

@@ -1,0 +1,11 @@
+{
+    "shopping list": [{"item": "Milk"}],
+    "stores": [{
+        "name": "SafeWay",
+        "items": [{
+            "price": 10,
+            "name": "Milk"
+        }]
+    }],
+    "name": "user"
+}
