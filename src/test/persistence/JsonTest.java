@@ -1,7 +1,6 @@
 package persistence;
 
 import model.Store;
-import model.ShoppingList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

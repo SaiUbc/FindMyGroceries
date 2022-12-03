@@ -4,7 +4,6 @@ import model.ShoppingList;
 import model.Store;
 import model.Item;
 import org.junit.jupiter.api.Test;
-import ui.ShoppingListFrame;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,15 +25,15 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterEmptyWorkroom() {
+    void testWriterEmptyShoppingList() {
         try {
             ShoppingList shoppingList = new ShoppingList("user");
-            JsonWriter writer = new JsonWriter("./data/testWriterEmptyWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyShoppingList.json");
             writer.open();
             writer.write(shoppingList);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterEmptyWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterEmptyShoppingList.json");
             shoppingList = reader.read();
             assertEquals("user", shoppingList.getShoppingListName());
             assertEquals(0, shoppingList.getShoppingList().size());
@@ -45,7 +44,7 @@ class JsonWriterTest extends JsonTest {
     }
 
     @Test
-    void testWriterGeneralWorkroom() {
+    void testWriterGeneralShoppingList() {
         try {
             ShoppingList shoppingList = new ShoppingList("user");
             shoppingList.addItemToList("Milk");
@@ -58,12 +57,12 @@ class JsonWriterTest extends JsonTest {
             shoppingList.addStore(saveons);
             shoppingList.addStore(noFrills);
 
-            JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterGeneralShoppingList.json");
             writer.open();
             writer.write(shoppingList);
             writer.close();
 
-            JsonReader reader = new JsonReader("./data/testWriterGeneralWorkroom.json");
+            JsonReader reader = new JsonReader("./data/testWriterGeneralShoppingList.json");
             shoppingList = reader.read();
             assertEquals("user", shoppingList.getShoppingListName());
             List<String> order = shoppingList.getShoppingList();

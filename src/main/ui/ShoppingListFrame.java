@@ -16,11 +16,14 @@ public class ShoppingListFrame extends JFrame {
     JList<String> list;
     JScrollPane scrollPane;
 
+    //EFFECTS: initializes constructor
     public ShoppingListFrame(ShoppingList shoppingList) {
         this.shoppingList = shoppingList;
         initialize();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initialzes JFrame and all the ui elements
     private void initialize() {
         shoppingListFrame = new JFrame();
         shoppingListFrame.getContentPane().setBackground(SystemColor.menu);
@@ -35,6 +38,8 @@ public class ShoppingListFrame extends JFrame {
         initializeJList();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a JTextField and adds to the JFrame
     private void initializeTextField() {
         textField = new JTextField();
         textField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -45,6 +50,8 @@ public class ShoppingListFrame extends JFrame {
         textField.setColumns(10);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the JList and adds to the JFrame
     private void initializeJList() {
         list = new JList<>();
         model = new DefaultListModel<>();
@@ -56,9 +63,10 @@ public class ShoppingListFrame extends JFrame {
         list.setBounds(73, 160, 494, 319);
         showShoppingList(shoppingList);
         scrollPane.setViewportView(list);
-
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes all the labels and adds to the Jframe
     private void allLabelsInitialize() {
         JLabel lblTopLabel = new JLabel("");
         lblTopLabel.setIcon(new ImageIcon("./data/ShoppingListMenuLabel.png"));
@@ -81,6 +89,7 @@ public class ShoppingListFrame extends JFrame {
         shoppingListFrame.getContentPane().add(lblCheese);
     }
 
+    //EFFECTS: initializes all the buttons
     private void allButtonsInitialize() {
         addItemButton();
         deleteItemButton();
@@ -88,6 +97,8 @@ public class ShoppingListFrame extends JFrame {
         backButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the add item JButton to JFrame
     private void addItemButton() {
         JButton btnAddItem = new JButton("Add Item");
         btnAddItem.addActionListener(new ActionListener() {
@@ -106,6 +117,8 @@ public class ShoppingListFrame extends JFrame {
         shoppingListFrame.getContentPane().add(btnAddItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the delete item JButton to JFrame
     private void deleteItemButton() {
         JButton btnDeleteItem = new JButton("Delete Item");
         btnDeleteItem.addActionListener(new ActionListener() {
@@ -127,16 +140,23 @@ public class ShoppingListFrame extends JFrame {
         shoppingListFrame.getContentPane().add(btnDeleteItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the process list JButton to JFrame
     private void processListButton() {
         JButton btnProcessList = new JButton("Process list");
         btnProcessList.setFont(new Font("American Typewriter", Font.PLAIN, 13));
         btnProcessList.setBounds(456, 119, 117, 29);
         shoppingListFrame.getContentPane().add(btnProcessList);
-        //!!!
-        //!!! TODO: Process list and search for cheapest items at a specific store
-        //!!!
+        btnProcessList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                FinalFrame window = new FinalFrame(shoppingList);
+                window.finalFrame.setVisible(true);
+            }
+        });
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the back JButton to JFrame
     private void backButton() {
         JButton btnback = new JButton();
         btnback.setIcon(new ImageIcon("./data/backButton.png"));
@@ -150,6 +170,8 @@ public class ShoppingListFrame extends JFrame {
         shoppingListFrame.getContentPane().add(btnback);
     }
 
+    //MODIFIES: this
+    //EFFECTS: displays the shopping list items by adding it to JList
     private void showShoppingList(ShoppingList shoppingList) {
         int n = shoppingList.getShoppingList().size();
         for (int i = 0; i < n; i++) {
@@ -157,6 +179,8 @@ public class ShoppingListFrame extends JFrame {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds the JScrollPane to the JFrame
     private void scrollPane() {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(73, 160, 494, 319);

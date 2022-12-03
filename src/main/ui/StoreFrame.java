@@ -17,12 +17,15 @@ public class StoreFrame extends JFrame {
     JList<String> list;
     JScrollPane scrollPane;
 
+    //EFFECTS: initialzies the constructor
     public StoreFrame(ShoppingList shoppingList) {
         initialize();
         showStoreList(shoppingList);
         this.shoppingList = shoppingList;
     }
 
+    //MODIFIES: this
+    //EFFECTS: creates a JFrame and initializes all the ui elements from JSwing
     private void initialize() {
         storeFrame = new JFrame();
         storeFrame.getContentPane().setBackground(SystemColor.menu);
@@ -46,6 +49,7 @@ public class StoreFrame extends JFrame {
         scrollPane.setViewportView(list);
     }
 
+    //EFFECTS: initializes all the button
     private void initializeButtons() {
         addStoreButton();
         removeStoreButton();
@@ -53,6 +57,7 @@ public class StoreFrame extends JFrame {
         backButton();
     }
 
+    //EFFECTS: initializes all the labels
     private void initializeLabels() {
         enterStoreLabel();
         topLabel();
@@ -60,6 +65,8 @@ public class StoreFrame extends JFrame {
         pearLabel();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a JTextField and adds it to the JFrame
     private void txtField() {
         textField = new JTextField();
         textField.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,6 +77,8 @@ public class StoreFrame extends JFrame {
         textField.setColumns(10);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes an add store JButton and adds it to the JFrame
     private void addStoreButton() {
         JButton btnAddStore = new JButton("Add Store");
         btnAddStore.addActionListener(new ActionListener() {
@@ -89,6 +98,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(btnAddStore);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a remove store JButton and adds it to the JFrame
     private void removeStoreButton() {
         JButton btnRemoveStore = new JButton("Remove Store");
         btnRemoveStore.addActionListener(new ActionListener() {
@@ -106,6 +117,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(btnRemoveStore);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes an enter store JButton and adds it to the JFrame
     private void enterStoreButton() {
         JButton btnEnterStore = new JButton("Enter Store");
         btnEnterStore.addActionListener(new ActionListener() {
@@ -124,6 +137,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(btnEnterStore);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a back JButton and adds it to the JFrame
     private void backButton() {
         JButton btnback = new JButton();
         btnback.setIcon(new ImageIcon("./data/backButton.png"));
@@ -137,6 +152,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(btnback);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes an enter store JLabel and adds it to the JFrame
     private void enterStoreLabel() {
         JLabel lblEnterStore = new JLabel("Enter Store:");
         lblEnterStore.setFont(new Font("American Typewriter", Font.PLAIN, 15));
@@ -144,6 +161,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(lblEnterStore);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a pear store JLabel and adds it to the JFrame
     private void pearLabel() {
         JLabel lblPear = new JLabel("New label");
         lblPear.setIcon(new ImageIcon("./data/PearImage.png"));
@@ -151,6 +170,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(lblPear);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a doughnut JLabel and adds it to the JFrame
     private void doughnutLabel() {
         JLabel lblDoughnut = new JLabel("New label");
         lblDoughnut.setIcon(new ImageIcon("./data/Doughnut.png"));
@@ -158,6 +179,8 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(lblDoughnut);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a top label JLabel and adds it to the JFrame
     private void topLabel() {
         JLabel lblTopLabelSign = new JLabel("");
         lblTopLabelSign.setIcon(new ImageIcon("./data/StoreMenu.png"));
@@ -165,13 +188,16 @@ public class StoreFrame extends JFrame {
         storeFrame.getContentPane().add(lblTopLabelSign);
     }
 
-    //Jlist add as a loop showStoreList(): shows all the items that have been saved!!!
+    //MODIFIES: this
+    //EFFECTS: displays all the stores by adding it to JList Model
     private void showStoreList(ShoppingList shoppingList) {
         for (Store store : shoppingList.getStores()) {
             model.addElement(store.getStoreName());
         }
     }
 
+    //THIS: this
+    //EFFECTS: adds a JScrollPane to the JFrame
     private void scrollPane() {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(73, 160, 494, 319);

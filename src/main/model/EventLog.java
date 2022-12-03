@@ -30,9 +30,9 @@ public class EventLog implements Iterable<Event> {
      * @return  instance of EventLog
      */
     public static EventLog getInstance() {
-        if (theLog == null)
+        if (theLog == null) {
             theLog = new EventLog();
-
+        }
         return theLog;
     }
 

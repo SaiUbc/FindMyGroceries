@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.ShoppingList;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -19,15 +21,19 @@ public class MenuFrame {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    //EFFECTS: constructos a JFrame and initializes it
     public MenuFrame() {
         initialize();
     }
 
+    //EFFECTS: initializes all the ui elements for the JFrame from jSwing library
     private void initialize() {
         initializeMainPanel();
         initializeAllButtons();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the JFrame, top label and images
     private void initializeMainPanel() {
         frame = new JFrame();
         frame.getContentPane().setBackground(UIManager.getColor("menu"));
@@ -54,13 +60,18 @@ public class MenuFrame {
         jsonReader = new JsonReader(JSON_STORE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes all the buttons
     private void initializeAllButtons() {
         initializeBtnShoppingList();
         initializeBtnStores();
         initializeBtnSaveList();
         initializeBtnLoadList();
+        initializeBtnQuit();
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds Shopping List button to the JFrame
     private void initializeBtnShoppingList() {
         JButton btnShoppingList = new JButton("Shopping List Menu ");
         btnShoppingList.setBackground(new Color(255, 255, 255));
@@ -76,6 +87,8 @@ public class MenuFrame {
         });
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds Store button to the JFrame
     private void initializeBtnStores() {
         JButton btnStoreMenu = new JButton("Stores Menu");
         btnStoreMenu.setFont(new Font("American Typewriter", Font.PLAIN, 14));
@@ -89,6 +102,8 @@ public class MenuFrame {
         });
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds Save button to the JFrame
     private void initializeBtnSaveList() {
         JButton btnSaveList = new JButton("Save List");
         btnSaveList.setFont(new Font("American Typewriter", Font.PLAIN, 14));
@@ -108,6 +123,8 @@ public class MenuFrame {
         frame.getContentPane().add(btnSaveList);
     }
 
+    //MODIFIES: this
+    //EFFECTS: adds Load button to the JFrame
     private void initializeBtnLoadList() {
         JButton btnLoadList = new JButton("Load List");
         btnLoadList.setFont(new Font("American Typewriter", Font.PLAIN, 14));
@@ -123,5 +140,28 @@ public class MenuFrame {
             }
         });
         frame.getContentPane().add(btnLoadList);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: adds Quit button to the JFrame
+    private void initializeBtnQuit() {
+        JButton btnQuit = new JButton("Quit");
+        btnQuit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                printLog(EventLog.getInstance());
+                frame.dispose();
+            }
+        });
+        btnQuit.setFont(new Font("American Typewriter", Font.PLAIN, 13));
+        btnQuit.setBounds(294, 457, 66, 29);
+        frame.getContentPane().add(btnQuit);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: prints all the Event from EventLog to the console
+    public void printLog(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n\n");
+        }
     }
 }

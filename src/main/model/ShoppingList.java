@@ -26,6 +26,7 @@ public class ShoppingList implements Writable {
     public void addStore(Store store) {
         if (!stores.contains(store)) {
             stores.add(store);
+            EventLog.getInstance().logEvent(new Event("Store: " + store.getStoreName() + " has been added"));
         }
     }
 
@@ -33,6 +34,7 @@ public class ShoppingList implements Writable {
     //EFFECTS: removes a store from the list of stores in the shopping list
     public void removeStore(Store store) {
         stores.remove(store);
+        EventLog.getInstance().logEvent(new Event("Store: " + store.getStoreName() + " has been removed"));
     }
 
     //MODIFIES: this
@@ -40,6 +42,7 @@ public class ShoppingList implements Writable {
     public void addItemToList(String item) {
         if (!shoppingList.contains(item)) {
             shoppingList.add(item);
+            EventLog.getInstance().logEvent(new Event(item + " has been added to shopping list"));
         }
     }
 
@@ -47,8 +50,10 @@ public class ShoppingList implements Writable {
     //EFFECTS: removes item from the shopping list
     public void removeItemFromList(String item) {
         shoppingList.remove(item);
+        EventLog.getInstance().logEvent(new Event(item + " has been removed from shopping list"));
     }
 
+    //EFFECTS: converts shopping list data into JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -58,6 +63,7 @@ public class ShoppingList implements Writable {
         return json;
     }
 
+    //EFFECTS: converts stores from shopping list and stores in JSONArray format
     private JSONArray storesToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -67,6 +73,7 @@ public class ShoppingList implements Writable {
         return jsonArray;
     }
 
+    //EFFECTS: converts shopping list data and stores in JSONArray format
     private JSONArray shoppingListToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -78,8 +85,10 @@ public class ShoppingList implements Writable {
         return jsonArray;
     }
 
+
+    //MODIFIES: this
+    //EFFECTS: returns the name of the store with a given storeName
     public Store findStore(String storeName) {
-        //Finds a Store of a given name in the list
         for (Store store : stores) {
             storenames.add(store.getStoreName());
             if (storenames.contains(storeName)) {
@@ -103,7 +112,6 @@ public class ShoppingList implements Writable {
     }
 
     //setters
-
     public void setStores(List<Store> stores) {
         this.stores = stores;
     }
@@ -115,5 +123,4 @@ public class ShoppingList implements Writable {
     public void setName(String name) {
         this.name = name;
     }
-
 }

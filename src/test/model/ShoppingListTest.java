@@ -139,4 +139,20 @@ public class ShoppingListTest {
         assertEquals(0, myList.getShoppingList().size());
         assertFalse(myList.getShoppingList().contains(orange));
     }
+
+    @Test
+    void findStoreThatDoesNotExist() {
+        assertEquals(0, myList.getStores().size());
+        assertFalse(myList.getStores().contains(saveon));
+        assertNull(myList.findStore("Save-Ons"));
+    }
+
+    @Test
+    void findStoreThatDoesExist() {
+        assertEquals(0, myList.getStores().size());
+        myList.addStore(safeway);
+        assertTrue(myList.getStores().contains(safeway));
+        assertEquals(1, myList.getStores().size());
+        assertEquals(safeway, myList.findStore("SafeWay"));
+    }
 }

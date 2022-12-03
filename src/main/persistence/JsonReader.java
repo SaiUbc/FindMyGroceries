@@ -48,7 +48,7 @@ public class JsonReader {
         return shoppingList;
     }
 
-    // MODIFIES: wr
+    // MODIFIES: this
     // EFFECTS: parses list from JSON object and adds them to shopping list
     private void addList(ShoppingList shoppingList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("shopping list");
@@ -60,8 +60,8 @@ public class JsonReader {
 
 
 
-    // MODIFIES: wr
-    // EFFECTS: parses thingies from JSON object and adds them to shopping list
+    // MODIFIES: this
+    // EFFECTS: parses Stores from JSON object and adds them to shopping list
     private void addStores(ShoppingList shoppingList, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("stores");
         for (Object json : jsonArray) {
@@ -70,7 +70,7 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: wr
+    // MODIFIES: this
     // EFFECTS: parses stores from JSON object and adds it to shopping list
     private void addStore(ShoppingList shoppingList, JSONObject jsonObject) {
         String name = jsonObject.getString("name");

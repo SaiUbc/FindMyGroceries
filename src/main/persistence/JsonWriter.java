@@ -1,8 +1,7 @@
 package persistence;
+
 import model.ShoppingList;
 import org.json.JSONObject;
-
-
 
 import java.io.*;
 

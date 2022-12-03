@@ -23,6 +23,7 @@ public class Store implements Writable {
     //EFFECTS: adds item to the stores items
     public void storeItem(Item item) {
         this.items.add(item);
+        EventLog.getInstance().logEvent(new Event("Item: " + item.getItemName() + " has been added to " + name));
     }
 
     //REQUIRES: stores items shouldn't be empty
@@ -32,6 +33,7 @@ public class Store implements Writable {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getItemName().equals(itemname)) {
                 items.remove(items.get(i));
+                EventLog.getInstance().logEvent(new Event("Item: " + itemname + " has been removed from " + name));
             }
         }
     }
@@ -49,15 +51,7 @@ public class Store implements Writable {
         return false;
     }
 
-    //Getters
-    public String getStoreName() {
-        return this.name;
-    }
-
-    public List<Item> getStoreItems() {
-        return items;
-    }
-
+    //EFFECTS: converts Store data and stores it into JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -66,11 +60,21 @@ public class Store implements Writable {
         return json;
     }
 
+    //EFFECTS: stores items of a store in an JSONArray
     private JSONArray itemsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Item item: items) {
             jsonArray.put(item.toJson());
         }
         return jsonArray;
+    }
+
+    //Getters
+    public String getStoreName() {
+        return this.name;
+    }
+
+    public List<Item> getStoreItems() {
+        return items;
     }
 }

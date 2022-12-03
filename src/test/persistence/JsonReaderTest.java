@@ -22,8 +22,8 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
+    void testReaderEmptyShoppingList() {
+        JsonReader reader = new JsonReader("./data/testWriterEmptyShoppingList.json");
         try {
             ShoppingList shoppingList = reader.read();
             assertEquals("user", shoppingList.getShoppingListName());
@@ -35,8 +35,8 @@ class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
+    void testReaderGeneralShoppingList() {
+        JsonReader reader = new JsonReader("./data/testWriterGeneralShoppingList.json");
         try {
             ShoppingList shoppingList = reader.read();
             assertEquals("user", shoppingList.getShoppingListName());

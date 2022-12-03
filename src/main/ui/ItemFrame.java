@@ -22,11 +22,15 @@ public class ItemFrame extends JFrame {
     JScrollPane scrollPane;
     Store store;
 
+    //MODIFIES: this
+    //EFFECTS: constructs the ItemFrame
     public ItemFrame(Store store) {
         this.store = store;
         initialize();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes all the JSwing elements
     private void initialize() {
         itemFrame = new JFrame();
         itemFrame.getContentPane().setBackground(SystemColor.menu);
@@ -42,6 +46,7 @@ public class ItemFrame extends JFrame {
         showItems();
     }
 
+    //EFFECTS: initializes all the labels in the frame
     private void initializeLabels() {
         itemName();
         topLabel();
@@ -56,6 +61,7 @@ public class ItemFrame extends JFrame {
         storeNamePreview();
     }
 
+    //EFFECTS: initializes all the buttons in the frame
     private void initializeButtons() {
         addItemButton();
         deleteItemButton();
@@ -64,6 +70,8 @@ public class ItemFrame extends JFrame {
         backButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the add button in the frame
     private void addItemButton() {
         JButton btnAddItem = new JButton("Add Item");
         btnAddItem.setFont(new Font("American Typewriter", Font.PLAIN, 14));
@@ -88,6 +96,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(btnAddItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the update button in the frame
     private void updateItemButton() {
         JButton btnUpdateItem = new JButton("Update Item");
         btnUpdateItem.addActionListener(new ActionListener() {
@@ -108,6 +118,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(btnUpdateItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the delete button in the frame
     private void deleteItemButton() {
         JButton btnDeleteItem = new JButton("Delete Item");
         btnDeleteItem.setFont(new Font("American Typewriter", Font.PLAIN, 14));
@@ -126,6 +138,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(btnDeleteItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the clear button in the frame
     private void clearItemButton() {
         JButton btnClearItem = new JButton("Clear Item");
         btnClearItem.addActionListener(new ActionListener() {
@@ -139,6 +153,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(btnClearItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the back button in the frame
     private void backButton() {
         JButton btnback = new JButton();
         btnback.setIcon(new ImageIcon("./data/backButton.png"));
@@ -152,6 +168,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(btnback);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the item name label in the frame
     private void itemName() {
         JLabel lblItemName = new JLabel("Item name: ");
         lblItemName.setFont(new Font("American Typewriter", Font.PLAIN, 16));
@@ -159,6 +177,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblItemName);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the top label in the frame
     private void topLabel() {
         JLabel lblTopLabelSign = new JLabel("");
         lblTopLabelSign.setIcon(new ImageIcon("./data/StoreMenuList.png"));
@@ -166,6 +186,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblTopLabelSign);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the item price label in the frame
     private void itemPrice() {
         JLabel lblItemPrice = new JLabel("Item price: ");
         lblItemPrice.setFont(new Font("American Typewriter", Font.PLAIN, 16));
@@ -173,6 +195,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblItemPrice);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the dollar symbol label in the frame
     private void dollarSymbol() {
         JLabel lblDollarSymbol = new JLabel("$");
         lblDollarSymbol.setFont(new Font("American Typewriter", Font.PLAIN, 16));
@@ -180,6 +204,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblDollarSymbol);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the lemon label in the frame
     private void lemon() {
         JLabel lblLemon = new JLabel("lemon");
         lblLemon.setIcon(new ImageIcon("./data/Lemon.png"));
@@ -187,6 +213,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblLemon);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the milk label in the frame
     private void milk() {
         JLabel lblMilk = new JLabel("milk");
         lblMilk.setIcon(new ImageIcon("./data/Milk.png"));
@@ -194,6 +222,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblMilk);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the pretzel label in the frame
     private void pretzel() {
         JLabel lblPretzel = new JLabel("pretzel");
         lblPretzel.setIcon(new ImageIcon("./data/Pretzel.png"));
@@ -201,6 +231,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblPretzel);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the avocado label in the frame
     private void avocado() {
         JLabel lblAvocado = new JLabel("avocado");
         lblAvocado.setIcon(new ImageIcon("./data/Avocado.png"));
@@ -208,6 +240,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblAvocado);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the store name label in the frame
     private void storeName() {
         JLabel lblStoreItem = new JLabel("Store name:");
         lblStoreItem.setFont(new Font("American Typewriter", Font.PLAIN, 16));
@@ -215,6 +249,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblStoreItem);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the store name label for the selected store in the frame
     private void storeNamePreview() {
         String storeName = store.getStoreName();
         JLabel lblStoreName = new JLabel(storeName);
@@ -223,6 +259,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(lblStoreName);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes all the textfields in the frame
     private void txtFields() {
         txtItemName = new JTextField();
         txtItemName.setFont(new Font("American Typewriter", Font.PLAIN, 16));
@@ -239,6 +277,8 @@ public class ItemFrame extends JFrame {
         itemFrame.getContentPane().add(txtItemPrice);
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the table for this JFrame
     private void table() {
         table = new JTable();
         table.setBackground(SystemColor.textHighlight);
@@ -263,12 +303,16 @@ public class ItemFrame extends JFrame {
         });
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes the scroll plane
     private void scrollPane() {
         scrollPane = new JScrollPane();
         scrollPane.setBounds(382, 95, 236, 324);
         itemFrame.getContentPane().add(scrollPane);
     }
 
+    //MODIFIES: this
+    //EFFECTS: It shows all the store items in the JFrame
     private void showItems() {
         for (Item item : store.getStoreItems()) {
             model.addRow(new Object[]{item.getItemName(), item.getItemPrice()});
