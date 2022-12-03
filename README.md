@@ -59,4 +59,9 @@ The removal of a Store, Shopping List item or a Store item is displayed in a sim
 
 ![DeleteEvent.png](./data/DeleteEvent.png)
 
-## UML Diagram and Suggestions 
+## UML Diagram and Suggestions
+![UML_Design_Diagram.png](./data/UML_Design_Diagram.png)
+- Having items were common in both Shopping list as well as the Store. Having an interface for item which is somwhat used by ShoppingList and Store class would have refactored the design.
+- There were many actionListeners for the buttons in the MainFrame, ShoppingListFrame, StoreFrame, ItemFrame and FinalFrame that could use lamda expressions instead for code refactoring.
+- Considering all the frames in the UI class had equal dimensions, having an abstract class that extends JFrame to build the window and having the classes in the ui package extend to this abstract class
+
